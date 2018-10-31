@@ -5,20 +5,25 @@
     <script type="text/javascript" src="./libs/paper-full.js"></script>
     <link rel="stylesheet" href="./assets/styles/tapatap.css" type="text/css">
     <script type="text/paperscript" canvas="myCanvas">  
-      var randomNum = function() {
-        return Math.floor(Math.random() * 256);
-      };
 
-      var randomColor = function() {
-        return "rgb(" + randomNum() + ", " + randomNum() + ", " + randomNum() + ")";
-      };
+      var circles = [];
 
       function onKeyDown(event) { 
         var maxPoint = new Point(view.size.width, view.size.height);
         var randomPoint = Point.random();
         var point = maxPoint * randomPoint;
-        new Path.Circle(point, 10).fillColor = randomColor();        
-      }      
+        var newCircle = new Path.Circle(point, 500);
+        newCircle.fillColor = "red";
+        circles.push(newCircle);        
+      }           
+
+      function onFrame(event) {
+        for (var i = 0; i < circles.length; i++) {
+          circles[i].fillColor.hue += 1;
+          circles[i].scale(0.9);
+        }
+      }         
+     
     </script>
   </head>
   <body>
