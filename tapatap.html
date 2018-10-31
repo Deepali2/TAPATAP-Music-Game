@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Tap A Tap</title>
+    <script type="text/javascript" src="./libs/paper-full.js"></script>
+    <link rel="stylesheet" href="./assets/styles/tapatap.css" type="text/css">
+    <script type="text/paperscript" canvas="myCanvas">  
+      var randomNum = function() {
+        return Math.floor(Math.random() * 256);
+      };
+
+      var randomColor = function() {
+        return "rgb(" + randomNum() + ", " + randomNum() + ", " + randomNum() + ")";
+      };
+
+      var circleGrid = function() {
+        for (x = 0; x <= 1000; x += 100) {
+          for (y = 0; y <= 1000; y += 100) {
+            new Path.Circle(new Point(x, y), 10).fillColor = randomColor();
+          }
+        }
+      };
+
+      circleGrid();
+     
+    </script>
+  </head>
+  <body>
+    <canvas id="myCanvas" resize></canvas>
+  </body>
+</html>
